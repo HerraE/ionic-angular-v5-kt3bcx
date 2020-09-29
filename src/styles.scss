@@ -1,0 +1,20 @@
+/* Add application styles & imports to this file! */
+@import '~@ionic/angular/css/ionic.bundle.css';
+
+:root {
+  /** primary **/
+  --ion-color-primary: #EE7F00;
+  --ion-color-primary-rgb: 238,127,0;
+  --ion-color-primary-contrast: #fff;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #be6600;
+  --ion-color-primary-tint: #f19933;
+
+  /** secondary **/
+  --ion-color-secondary: #009933;
+  --ion-color-secondary-rgb: 0,153,51;
+  --ion-color-secondary-contrast: #fff;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #007a29;
+  --ion-color-secondary-tint: #33ad5c;
+}

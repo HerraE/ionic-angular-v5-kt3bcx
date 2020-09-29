@@ -1,0 +1,116 @@
+<ion-app>
+	<ion-header>
+		<ion-toolbar color="primary">
+			<ion-title>
+        <ion-icon name="people"></ion-icon>
+        Besucherregistrierung
+      </ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content>
+
+		<ion-img style="width: 50%; margin: auto;"
+			src="https://breitbach-umzuege.de/wp-content/uploads/2018/02/Globus-Baumarkt-Logo.jpg"></ion-img>
+
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-list>
+						<ion-list-header>
+							<ion-label style="font-size: 22px; font-weight: bold;">Allgemein</ion-label>
+						</ion-list-header>
+						<ion-item>
+							<ion-label position="fixed">Firma</ion-label>
+							<ion-input [(ngModel)]="firma" [disabled]="allgemeinReadonly"></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="fixed">Besuch bei</ion-label>
+							<ion-input [(ngModel)]="besuchBei" [disabled]="allgemeinReadonly"></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="fixed">Tätigkeit (optional)</ion-label>
+							<ion-input [(ngModel)]="taetigkeit" [disabled]="allgemeinReadonly"></ion-input>
+						</ion-item>
+					</ion-list>
+				</ion-col>
+				<ion-col>
+					<ion-list>
+						<ion-list-header>
+							<ion-label style="font-size: 22px; font-weight: bold;">Person</ion-label>
+						</ion-list-header>
+						<ion-item>
+							<ion-label position="fixed">Anrede</ion-label>
+							<ion-select [(ngModel)]="anrede" interface="popover">
+								<ion-select-option value="Herr">Herr</ion-select-option>
+								<ion-select-option value="Frau">Frau</ion-select-option>
+								<ion-select-option value="Divers">Divers</ion-select-option>
+							</ion-select>
+						</ion-item>
+						<ion-item>
+							<ion-label position="fixed">Vorname</ion-label>
+							<ion-input [(ngModel)]="vorname"></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="fixed">Nachname</ion-label>
+							<ion-input [(ngModel)]="nachname"></ion-input>
+						</ion-item>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" (click)="addBesucher()"
+                      [disabled]="!firma || !besuchBei || !anrede || !vorname || !nachname">
+            <ion-icon name="add" slot="start"></ion-icon>
+            <ion-label>Besucher hinzufügen</ion-label>
+          </ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+
+		<ion-grid>
+			<ion-row>
+				<ion-col size="6" *ngFor="let besucher of besucherList; let i = index">
+					<ion-card>
+						<ion-card-content>
+              <ion-label>
+                {{ besucher.anrede }}
+                {{ besucher.vorname }}
+                {{ besucher.nachname }}
+              </ion-label>
+              <ion-icon name="close" slot="start" (click)="besucherList.splice(i, 1)"
+                        style="float: right; cursor: pointer; font-size: 1.25rem;">
+              </ion-icon>
+            </ion-card-content>
+					</ion-card>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+	</ion-content>
+
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" (click)="checkIn()" [disabled]="!besucherList.length">
+            <ion-icon name="log-in" slot="start"></ion-icon>
+            <ion-label>Check-in</ion-label>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="reset()" [disabled]="!besucherList.length">
+            <ion-icon name="close" slot="start"></ion-icon>
+            <ion-label>Abbrechen</ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
+
+</ion-app>
